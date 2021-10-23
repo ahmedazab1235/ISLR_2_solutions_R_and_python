@@ -3,3 +3,145 @@ title: "R Notebook"
 output: html_notebook
 ---
 
+
+importing the data 
+```{r}
+df = read.csv("College.csv", stringsAsFactors = T)
+
+head(df)
+```
+Look at data using View()
+```{r}
+View(df)
+```
+
+```{r}
+rownames(df) = df[, 1]
+head(df)
+```
+```{r}
+row.names(df)
+```
+delet first column 
+```{r}
+df = df[, -1]
+head(df)
+
+```
+getting summary about the data 
+
+```{r}
+summary(df)
+```
+
+making a scatterplot matrix by pairs()
+```{r}
+
+
+pairs(df[, 1:10])
+
+```
+
+plot boxplot between Private, Outstate
+
+```{r}
+plot(df$Private, df$Outstate)
+```
+new qualitative variable, called Elite, by binning the Top10perc variable. We are going to divide universities into two groups based on whether or not the proportion of students coming from the top 10% of their high school classes exceeds 50 %.
+```{r}
+Elite = rep("No", nrow(df))
+Elite[df$Top10perc > 50 ] = 'Yes'
+Elite = as.factor(Elite)
+df = data.frame(df, Elite)
+```
+
+
+```{r}
+summary(df)
+```
+
+```{r}
+plot(df$Elite, df$Outstate)
+```
+
+```{r}
+par(mfrow=c(3, 3))
+hist(df$Apps)
+
+hist(df$Accept)
+
+hist(df$Enroll)
+
+hist(df$Top10perc)
+
+hist(df$Top25perc)
+
+hist(df$F.Undergrad)
+
+
+hist(df$P.Undergrad)
+
+hist(df$Outstate)
+
+hist(df$Room.Board)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
